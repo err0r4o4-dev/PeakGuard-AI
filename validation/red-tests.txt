@@ -1,0 +1,25 @@
+test_conflicting_duplicate_is_unknown_not_last_value (__main__.PipelineContract.test_conflicting_duplicate_is_unknown_not_last_value) ... skipped 'Implementation pending'
+test_day_ago_baseline_uses_target_hour_yesterday (__main__.PipelineContract.test_day_ago_baseline_uses_target_hour_yesterday) ... skipped 'Implementation pending'
+test_features_are_causal_under_future_perturbation (__main__.PipelineContract.test_features_are_causal_under_future_perturbation) ... skipped 'Implementation pending'
+test_identical_duplicate_collapses (__main__.PipelineContract.test_identical_duplicate_collapses) ... skipped 'Implementation pending'
+test_implementation_exists (__main__.PipelineContract.test_implementation_exists) ... FAIL
+test_invalid_demand_and_gap_stay_missing (__main__.PipelineContract.test_invalid_demand_and_gap_stay_missing) ... skipped 'Implementation pending'
+test_metrics_handle_one_class_without_inventing_ap (__main__.PipelineContract.test_metrics_handle_one_class_without_inventing_ap) ... skipped 'Implementation pending'
+test_notebook_validates_and_compiles (__main__.PipelineContract.test_notebook_validates_and_compiles) ... skipped 'Implementation pending'
+test_schema_rejects_missing_demand (__main__.PipelineContract.test_schema_rejects_missing_demand) ... skipped 'Implementation pending'
+test_split_purges_boundary_labels_and_freezes_p90 (__main__.PipelineContract.test_split_purges_boundary_labels_and_freezes_p90) ... skipped 'Implementation pending'
+test_target_does_not_bridge_missing_hour (__main__.PipelineContract.test_target_does_not_bridge_missing_hour) ... skipped 'Implementation pending'
+test_threshold_search_is_deterministic (__main__.PipelineContract.test_threshold_search_is_deterministic) ... skipped 'Implementation pending'
+
+======================================================================
+FAIL: test_implementation_exists (__main__.PipelineContract.test_implementation_exists)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\title\Downloads\312\PeakGuard-AI\validation\test_pipeline.py", line 23, in test_implementation_exists
+    self.assertTrue(MODULE.exists(), 'Causal pipeline has not been implemented')
+AssertionError: False is not true : Causal pipeline has not been implemented
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+FAILED (failures=1, skipped=11)

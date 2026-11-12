@@ -1,0 +1,219 @@
+{
+  "generated_at_utc": "2026-11-12T15:27:23.518853+00:00",
+  "python": "3.12.15",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "seed": 312,
+  "provenance": {
+    "source_url": "https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption",
+    "file": "PJME_hourly.csv",
+    "sha256": "4eb2b16d42bf07ec41ab55cb842191594cb69452725a6d3c0991658a628fde84",
+    "raw_rows": 145366,
+    "columns": [
+      "Datetime",
+      "PJME_MW"
+    ]
+  },
+  "quality": {
+    "raw_rows": 145366,
+    "raw_missing_by_column": {
+      "Datetime": 0,
+      "PJME_MW": 0
+    },
+    "raw_dtypes": {
+      "Datetime": "object",
+      "PJME_MW": "float64"
+    },
+    "invalid_datetime_rows": 0,
+    "invalid_demand_rows": 0,
+    "duplicate_time_rows": 8,
+    "input_sorted": false,
+    "conflicting_duplicate_hours": 4,
+    "collapsed_duplicate_rows": 4,
+    "missing_grid_hours": 30,
+    "grid_rows": 145392,
+    "observed_clean_rows": 145358,
+    "missing_after_cleaning": 34,
+    "start": "2002-01-01 01:00:00",
+    "end": "2018-08-03 00:00:00",
+    "observed_interval_counts_hours": {
+      "1.0": 145331,
+      "2.0": 30
+    }
+  },
+  "split_audit": {
+    "train": {
+      "raw_start": "2002-01-01 01:00:00",
+      "raw_end_exclusive": "2013-08-11 15:00:00",
+      "candidate_rows_after_boundary_purge": 101773,
+      "usable_rows": 97525,
+      "dropped_incomplete_rows": 4248,
+      "normal_samples": 87389,
+      "peak_samples": 10136,
+      "peak_fraction": 0.10393232504486029,
+      "normal_to_peak_ratio": 8.621645619573796
+    },
+    "validation": {
+      "raw_start": "2013-08-11 15:00:00",
+      "raw_end_exclusive": "2016-02-06 08:00:00",
+      "candidate_rows_after_boundary_purge": 21808,
+      "usable_rows": 20958,
+      "dropped_incomplete_rows": 850,
+      "normal_samples": 19193,
+      "peak_samples": 1765,
+      "peak_fraction": 0.08421605114991888,
+      "normal_to_peak_ratio": 10.874220963172805
+    },
+    "test": {
+      "raw_start": "2016-02-06 08:00:00",
+      "raw_end_exclusive": "2018-08-03 01:00:00",
+      "candidate_rows_after_boundary_purge": 21808,
+      "usable_rows": 20958,
+      "dropped_incomplete_rows": 850,
+      "normal_samples": 19059,
+      "peak_samples": 1899,
+      "peak_fraction": 0.09060979101059262,
+      "normal_to_peak_ratio": 10.036334913112164
+    }
+  },
+  "peak_threshold_mw": 40851.0,
+  "selected_on_validation": "Random Forest",
+  "validation_metrics": [
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9869739478957916,
+      "precision": 0.8733733733733734,
+      "recall": 0.9886685552407932,
+      "f1": 0.9274515014615998,
+      "f2": 0.9632369176418636,
+      "average_precision": 0.9907687869258914,
+      "decision_cutoff": 0.375
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.9822502147151446,
+      "precision": 0.8405867970660147,
+      "recall": 0.9739376770538244,
+      "f1": 0.9023622047244094,
+      "f2": 0.943986820428336,
+      "average_precision": 0.9782975499242239,
+      "decision_cutoff": 0.65
+    },
+    {
+      "model": "Persistence",
+      "accuracy": 0.9752839011356046,
+      "precision": 0.853257790368272,
+      "recall": 0.853257790368272,
+      "f1": 0.853257790368272,
+      "f2": 0.853257790368272,
+      "average_precision": 0.9422835331649109,
+      "decision_cutoff": 40851.0
+    },
+    {
+      "model": "Previous Day",
+      "accuracy": 0.9398797595190381,
+      "precision": 0.6430594900849859,
+      "recall": 0.6430594900849859,
+      "f1": 0.6430594900849859,
+      "f2": 0.6430594900849859,
+      "average_precision": 0.6676855178415044,
+      "decision_cutoff": 40851.0
+    }
+  ],
+  "test_metrics": [
+    {
+      "model": "Persistence",
+      "accuracy": 0.9774787670579254,
+      "precision": 0.875724065297525,
+      "recall": 0.875724065297525,
+      "f1": 0.875724065297525,
+      "f2": 0.875724065297525,
+      "average_precision": 0.9592967216385545,
+      "selected_on_validation": false,
+      "decision_cutoff": 40851.0
+    },
+    {
+      "model": "Previous Day",
+      "accuracy": 0.9484683653020326,
+      "precision": 0.7170111287758346,
+      "recall": 0.7124802527646129,
+      "f1": 0.7147385103011094,
+      "f2": 0.713381841189497,
+      "average_precision": 0.7917283366506422,
+      "selected_on_validation": false,
+      "decision_cutoff": 40851.0
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.9885008111461018,
+      "precision": 0.8943862987630827,
+      "recall": 0.9899947340705635,
+      "f1": 0.9397650587353161,
+      "f2": 0.9692720148484224,
+      "average_precision": 0.9921975882086185,
+      "selected_on_validation": false,
+      "decision_cutoff": 0.65
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9897891020135509,
+      "precision": 0.9017644253695756,
+      "recall": 0.9957872564507636,
+      "f1": 0.9464464464464465,
+      "f2": 0.975446198287424,
+      "average_precision": 0.9960945736755489,
+      "selected_on_validation": true,
+      "decision_cutoff": 0.375
+    }
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.9995758443348709,
+      "recall": 0.989191458103783,
+      "f1-score": 0.9943565400843882,
+      "support": 19059.0
+    },
+    "Peak": {
+      "precision": 0.9017644253695756,
+      "recall": 0.9957872564507636,
+      "f1-score": 0.9464464464464465,
+      "support": 1899.0
+    },
+    "accuracy": 0.9897891020135509,
+    "macro avg": {
+      "precision": 0.9506701348522233,
+      "recall": 0.9924893572772733,
+      "f1-score": 0.9704014932654174,
+      "support": 20958.0
+    },
+    "weighted avg": {
+      "precision": 0.990713172103976,
+      "recall": 0.9897891020135509,
+      "f1-score": 0.9900154165125563,
+      "support": 20958.0
+    }
+  },
+  "eda_captions_th": {
+    "eda_demand_over_time": "ข้อมูล Train มีค่าเฉลี่ย 32,412.5 MW; เส้น P90 ของข้อมูลรายชั่วโมงเท่ากับ 40,851.0 MW ไม่ใช่ P90 ของค่าเฉลี่ยรายวัน",
+    "eda_hour": "กลุ่ม hour ที่มีค่าเฉลี่ย Train สูงสุดคือ 19 (36,776.0 MW); เป็นความสัมพันธ์ ไม่ใช่หลักฐานเชิงสาเหตุ",
+    "eda_weekday": "กลุ่ม weekday ที่มีค่าเฉลี่ย Train สูงสุดคือ 2 (33,628.5 MW); เป็นความสัมพันธ์ ไม่ใช่หลักฐานเชิงสาเหตุ",
+    "eda_month": "กลุ่ม month ที่มีค่าเฉลี่ย Train สูงสุดคือ 7 (38,409.0 MW); เป็นความสัมพันธ์ ไม่ใช่หลักฐานเชิงสาเหตุ",
+    "eda_distribution": "นิยาม Peak คือ demand >= Train P90; อัตรา Peak ในชั่วโมงที่สังเกตได้ของ Train = 10.00%",
+    "eda_peak_distribution": "สัดส่วน Peak สูงสุดใน Train อยู่ที่ชั่วโมง 18 (23.66%)",
+    "eda_heatmap": "สีแสดงค่าเฉลี่ย MW ของ Train ตามวันและชั่วโมง ใช้ค้นหารูปแบบ ไม่ใช้ Test ออกแบบ Features",
+    "eda_correlation": "Correlation คำนวณจาก Features ของ Train เท่านั้น; ค่าสูงไม่ได้ยืนยันเหตุและผล และ lags มีความสัมพันธ์กันได้"
+  },
+  "limitations": [
+    "retrospective simulation only",
+    "naive timestamps: exact elapsed time across DST not established",
+    "one temporal split; no causal/financial savings claim",
+    "teacher PDF not supplied",
+    "AI team decisions pending actual team confirmation"
+  ]
+}

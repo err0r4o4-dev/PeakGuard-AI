@@ -1,0 +1,21 @@
+test_causal_time_operations_emit_no_deprecation_warnings (__main__.PipelineContract.test_causal_time_operations_emit_no_deprecation_warnings) ... mkdir -p failed for path C:\Users\title\AppData\Local\matplotlib: [WinError 5] Access is denied: 'C:\\Users\\title\\AppData\\Local\\matplotlib'
+Matplotlib created a temporary cache directory at C:\Users\title\AppData\Local\Temp\matplotlib-8o52wi9j because there was an issue with the default path (C:\Users\title\AppData\Local\matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+ERROR
+
+======================================================================
+ERROR: test_causal_time_operations_emit_no_deprecation_warnings (__main__.PipelineContract.test_causal_time_operations_emit_no_deprecation_warnings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\title\Downloads\312\PeakGuard-AI\validation\test_pipeline.py", line 109, in test_causal_time_operations_emit_no_deprecation_warnings
+    clean, _ = self.pg.clean_data(self.raw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\title\Downloads\312\PeakGuard-AI\src\peakguard.py", line 96, in clean_data
+    if duration > pd.Timedelta(days=366 * 50):
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/tslibs/timedeltas.pyx", line 1807, in pandas._libs.tslibs.timedeltas.Timedelta.__new__
+DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+
+----------------------------------------------------------------------
+Ran 1 test in 1.966s
+
+FAILED (errors=1)

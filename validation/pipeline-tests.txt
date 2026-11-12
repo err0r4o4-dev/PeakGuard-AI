@@ -1,0 +1,24 @@
+test_artifact_verifier_checks_project_without_parent_notebook (test_pipeline.PipelineContract.test_artifact_verifier_checks_project_without_parent_notebook) ... ok
+test_causal_time_operations_emit_no_deprecation_warnings (test_pipeline.PipelineContract.test_causal_time_operations_emit_no_deprecation_warnings) ... ok
+test_conflicting_duplicate_is_unknown_not_last_value (test_pipeline.PipelineContract.test_conflicting_duplicate_is_unknown_not_last_value) ... ok
+test_day_ago_baseline_uses_target_hour_yesterday (test_pipeline.PipelineContract.test_day_ago_baseline_uses_target_hour_yesterday) ... ok
+test_features_are_causal_under_future_perturbation (test_pipeline.PipelineContract.test_features_are_causal_under_future_perturbation) ... ok
+test_identical_duplicate_collapses (test_pipeline.PipelineContract.test_identical_duplicate_collapses) ... ok
+test_implementation_exists (test_pipeline.PipelineContract.test_implementation_exists) ... ok
+test_invalid_demand_and_gap_stay_missing (test_pipeline.PipelineContract.test_invalid_demand_and_gap_stay_missing) ... ok
+test_invalid_timestamp_is_counted_and_off_hour_rejected (test_pipeline.PipelineContract.test_invalid_timestamp_is_counted_and_off_hour_rejected) ... ok
+test_kaggle_download_replaces_stale_csv_from_current_archive (test_pipeline.PipelineContract.test_kaggle_download_replaces_stale_csv_from_current_archive) ... ok
+test_local_loader_reports_missing_file_and_hashes_real_file (test_pipeline.PipelineContract.test_local_loader_reports_missing_file_and_hashes_real_file) ... ok
+test_metrics_handle_one_class_without_inventing_ap (test_pipeline.PipelineContract.test_metrics_handle_one_class_without_inventing_ap) ... ok
+test_notebook_embedded_source_matches_module (test_pipeline.PipelineContract.test_notebook_embedded_source_matches_module) ... ok
+test_notebook_validates_and_compiles (test_pipeline.PipelineContract.test_notebook_validates_and_compiles) ... ok
+test_schema_rejects_missing_demand (test_pipeline.PipelineContract.test_schema_rejects_missing_demand) ... ok
+test_split_purges_boundary_labels_and_freezes_p90 (test_pipeline.PipelineContract.test_split_purges_boundary_labels_and_freezes_p90) ... ok
+test_target_does_not_bridge_missing_hour (test_pipeline.PipelineContract.test_target_does_not_bridge_missing_hour) ... ok
+test_threshold_search_is_deterministic (test_pipeline.PipelineContract.test_threshold_search_is_deterministic) ... ok
+test_training_rejects_single_class_validation (test_pipeline.PipelineContract.test_training_rejects_single_class_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 5.664s
+
+OK

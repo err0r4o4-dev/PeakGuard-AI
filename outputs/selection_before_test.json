@@ -1,0 +1,11 @@
+{
+  "selected_name": "Random Forest",
+  "peak_threshold_mw": 40851.0,
+  "decision_cutoffs": {
+    "Persistence": 40851.0,
+    "Previous Day": 40851.0,
+    "Logistic Regression": 0.65,
+    "Random Forest": 0.375
+  },
+  "selection_rule": "validation F2, Recall, Precision, model name"
+}
