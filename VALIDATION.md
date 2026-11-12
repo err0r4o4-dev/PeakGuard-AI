@@ -8,9 +8,9 @@ Notebook และผลทดลองสร้างแล้วและผ�
 
 ## หลักฐานปัจจุบัน
 - PASS: ข้อมูลจริงจาก public Kaggle, 145,366 แถว Datetime/PJME_MW; source_metadata.json ระบุ CC0: Public Domain
-- PASS: focused pipeline tests 19 cases; validation/pipeline-tests.txt
+- PASS ปัจจุบัน: unittest discovery ครบ 33 tests ใน 5.485 วินาที; validation/followup-tests.txt และ validation/followup_report.json (ผล 19 tests เดิมอยู่ pipeline-tests.txt)
 - PASS: Notebook schema และ compile code cells; ทดสอบการฝังโค้ดตรงกับ src/peakguard.py
-- PASS: Run all ผ่าน nbclient บน local Jupyter CPU, 22 code cells ไม่มี cell error; validation/execution_report.json
+- PASS จากรอบก่อน: Run all ผ่าน nbclient บน local Jupyter CPU, 22 code cells ไม่มี cell error; validation/execution_report.json รอบปัจจุบันไม่ Run all หรือ regenerate ทับ Notebook ของผู้ใช้
 - PASS: ตรวจ artifacts 61 project-only checks; validation/artifact_report.json รวมการคำนวณ metrics ซ้ำจาก predictions, reload artifact, ตรวจ Target +1 ชั่วโมง และกราฟ 14 ภาพ 300 DPI
 - PASS: มี 14 PNG outputs ฝังใน Notebook และ export ใน outputs/figures/
 - PASS: ทดสอบเปลี่ยนข้อมูลอนาคตไม่เปลี่ยน Features อดีต และเปลี่ยน Validation/Test ไม่เปลี่ยน Train/P90
@@ -20,9 +20,7 @@ Notebook และผลทดลองสร้างแล้วและผ�
 
 ## คำสั่งที่ใช้จาก Workspace root
 ~~~powershell
-.\.venv\Scripts\python.exe PeakGuard-AI/validation/build_notebook.py
-.\.venv\Scripts\python.exe PeakGuard-AI/validation/test_pipeline.py
-.\.venv\Scripts\python.exe PeakGuard-AI/validation/execute_notebook.py
+.\.venv\Scripts\python.exe -m unittest discover -s PeakGuard-AI/validation -p "test_*.py" -v
 .\.venv\Scripts\python.exe PeakGuard-AI/validation/verify_artifacts.py
 ~~~
 
@@ -60,12 +58,20 @@ Random Forest: Accuracy 0.989789, Precision 0.901764, F1 0.946446, TN 18,853, FP
 - NumPy/Pandas timedelta warning: ทำ focused failing regression แล้วแก้ใช้ explicit NumPy time units และ duration seconds; ไม่ซ่อน warnings
 - Legend บังแท่งกราฟ: ย้าย legend ออกนอก axes แล้วรัน export ใหม่ โดยไม่เปลี่ยน model settings หรือ selection
 - Local Jupyter เตือน Windows event-loop fallback และ TCP transport ไม่มี encryption: เป็นคำเตือน runtime ที่บันทึกไว้ใน execution-log.txt; ไม่ใช่ cell failure ไม่เปลี่ยนการตั้งค่า network/security เพื่อหลบคำเตือน
-- หลังผู้ใช้ลบ Notebook เดิม: regression test ทำซ้ำ FileNotFoundError ได้ก่อนแก้ แล้วจำกัด verifier ให้อ่านเฉพาะโครงการ; รันล่าสุดผ่าน 18 tests, 61 artifact checks และ Notebook 22 code cells (16.45 วินาที)
+- หลังผู้ใช้ลบ Notebook เดิม: regression test ทำซ้ำ FileNotFoundError ได้ก่อนแก้ แล้วจำกัด verifier ให้อ่านเฉพาะโครงการ; รอบนั้นผ่าน 18 tests, 61 artifact checks และ Notebook 22 code cells (16.45 วินาที)
+
+## Follow-up: รักษาการแก้ไขของผู้ใช้และตรวจ loaders ในเครื่อง
+- ผู้ใช้ยืนยันว่าแก้ Notebook เอง โดยลบ Phase labels จากหัวข้อ R1-R6; ปรับ generator ให้ตรงกัน ทดสอบก่อนแก้พบหัวข้อไม่ตรง แล้วผ่านหลังแก้
+- ทดสอบ generation ใน temporary project เท่านั้น; SHA-256 ของ Notebook ก่อนและหลังตรงกัน: 3ad47c7a643f03d27d96c6538d97a3d21ab73b59506f89e32087afcc41332925
+- เพิ่ม 14 tests: upload เลือก CSV/ปฏิเสธชื่อผิดหรือกำกวม, Drive path/mount, การใช้โหมด Colab นอก Colab, Kaggle direct CSV/ข้อผิดพลาด/ไม่มี output/ไม่มี CLI หรือ config/สมาชิก ZIP ที่ไม่คาดหมาย และ generator headings
+- ใช้ CSV จริงใน temporary test directory และจำลองเฉพาะ Colab API กับ subprocess ของ Kaggle; ไม่เข้าบัญชี ไม่ใช้ credential จริง ไม่ดาวน์โหลด และไม่อ้างว่า Colab จริงผ่าน
+- การรันทดสอบครั้งแรกพบ fixture ล้าง home environment ของ Windows จึงเข้า branch ผิด; เพิ่ม HOME/USERPROFILE ให้ชี้ temporary test directory แล้วรันทั้งชุดผ่าน ไม่แก้ production loader จากอาการของ fixture
+- PASS: 33 tests และ 61 artifact checks จากรอบปัจจุบัน; ไม่เปลี่ยน src/peakguard.py โมเดลหรือผลทดลอง การตรวจ independent core-flow เดิมไม่ครอบคลุม test file ใหม่
 
 ## เงื่อนไขที่ยังไม่ผ่านการตรวจรับ
 - PASS เฉพาะขอบเขต: independent correctness review ของ core flow, loader และ patch ที่ส่งตรวจ; ดู validation/INDEPENDENT_REVIEW.md ไม่อ้างว่าตรวจทุกไฟล์/กราฟ/Colab จริง
 - BLOCKED: ตรวจเทียบ DS Capstone Project Requirements 1.pdf เพราะไม่ได้รับไฟล์
-- BLOCKED: R7 ต้องให้ทีมยืนยันประวัติจริง และมีอย่างน้อย 1 กรณีแก้ไข/ปฏิเสธ AI; ตัวอย่าง Pending ไม่ใช่ประวัติ
+- BLOCKED: R7 ต้องให้ทีมยืนยันประวัติจริง; พบการแก้หัวข้อโดยผู้ใช้แล้ว แต่ยังไม่ทราบเหตุผลและการยืนยันในนามทีม จึงยังไม่เติมแทนตัวอย่าง Pending ใน Notebook
 - NOT RUN: Google Colab จริง และ interactive upload/Drive mount/Kaggle credentials ในบัญชีผู้ใช้ ใช้ local Jupyter เป็น equivalent environment ตามโจทย์ แต่ไม่อ้างว่า interactive modes ผ่านแล้ว
 - NOT APPLICABLE: Frontend/Backend/Database/Deployment เพราะอยู่นอกขอบเขต
 

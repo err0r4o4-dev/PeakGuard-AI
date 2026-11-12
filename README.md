@@ -27,7 +27,7 @@ Kaggle mode ใช้ environment variables KAGGLE_API_TOKEN หรือ KAGGLE
 ~~~powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python.exe validation/test_pipeline.py
+.\.venv\Scripts\python.exe -m unittest discover -s validation -p "test_*.py" -v
 .\.venv\Scripts\python.exe validation/execute_notebook.py
 ~~~
 
@@ -36,6 +36,14 @@ python -m venv .venv
 
 requirements.txt ระบุช่วงเวอร์ชันที่รองรับ ส่วน validation/environment-freeze.txt บันทึกเวอร์ชันจริงที่ใช้ตรวจรอบนี้
 requirements-dev.txt เพิ่ม Jupyter packages เฉพาะการพัฒนา/ตรวจรับ ไม่จำเป็นสำหรับผู้ใช้ Colab ที่มีพร้อมแล้ว
+
+การทดสอบ discovery รวม pipeline และ loader portability: จำลองเฉพาะ Colab API และการดาวน์โหลด Kaggle ไม่เข้าบัญชีหรือใช้ credential จริง ทดสอบ generator ใน temporary project เพื่อไม่เขียนทับ Notebook ที่ผู้ใช้แก้ ผลปัจจุบันดู validation/followup_report.json
+
+### ตรวจรับบน Colab จริงที่ยังต้องทำ
+- Upload: เลือก MODE=upload และ PJME_hourly.csv แล้ว Run all; ตรวจ raw rows/hash ใน provenance, metrics และกราฟครบ รวมทั้งลองชื่อไฟล์ผิดเพื่ออ่าน error
+- Drive: ตั้ง DRIVE_PATH ที่มีไฟล์จริง อนุมัติ mount ด้วยบัญชีของตนเอง แล้ว Run all; เส้นทางไม่พบไฟล์ต้องแสดงข้อผิดพลาด ไม่อ่านไฟล์อื่นแทน
+- Kaggle: ติดตั้ง CLI และตั้ง credentials ผ่านช่องทางส่วนตัว แล้วเลือก MODE=kaggle; ตรวจว่าไฟล์และ hash ที่อ่านมาจากการดาวน์โหลดรอบนั้น และ error ไม่แสดง credentials
+บันทึกผลแต่ละโหมดตามที่รันจริง พร้อม package versions จาก run_manifest.json; local mocks ไม่ยืนยัน authentication หรือความเข้ากันได้กับผู้ให้บริการ ห้ามส่ง credentials มาในรายงาน
 
 ## วิธีทดลองและป้องกัน Leakage
 - แบ่ง hourly grid ตามเวลา 70% Train, 15% Validation, 15% Test ก่อนคัดแถวที่มี Features ครบ ไม่มี shuffle

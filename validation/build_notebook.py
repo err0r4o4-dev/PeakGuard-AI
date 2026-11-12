@@ -39,7 +39,7 @@ Notebook มีโค้ดทั้งหมดในตัว ไม่ต้�
 **ข้อจำกัดการตรวจรับ:** ไม่พบเอกสาร DS Capstone Project Requirements 1.pdf ใน Workspace จึงเทียบ R1–R7 จากโจทย์ที่ได้รับ ทีมต้องตรวจ PDF เพิ่มเมื่อได้รับ และต้องยืนยันการรันบน Colab จริง
 ''')
 markdown('''
-## R1 — Business Understanding / Phase 1
+## R1 — Business Understanding
 **Problem:** ผู้วางแผนจัดการความต้องการไฟฟ้าต้องการเตรียมรับชั่วโมงที่โหลดสูง โดยใช้ข้อมูลย้อนหลังที่ทราบแล้ว
 
 **ผู้ใช้และการตัดสินใจ:** ในสถานการณ์จำลอง ผู้วางแผนใช้คำเตือนล่วงหน้า 1 ชั่วโมงเพื่อเตรียมตารางเลื่อนโหลดที่ยืดหยุ่น ประสานงาน และให้คนพิจารณามาตรการก่อนใช้งาน ไม่มีการสั่งตัดไฟอัตโนมัติ
@@ -87,7 +87,7 @@ code(blocks[0])
 for block in blocks[1:]:
     code('def ' + block)
 markdown('''
-## R2 — Data Understanding & Preparation / Phases 2, 4, 5
+## R2 — Data Understanding & Preparation
 ### Dataset และ provenance
 แหล่งข้อมูล: https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption
 
@@ -164,7 +164,7 @@ for name, subset in partitions.items():
 print("PASS: hourly grid, exact next-hour targets, valid features, frozen labels and boundary purging")
 ''')
 markdown('''
-## R3 — EDA & Insights / Phase 3
+## R3 — EDA & Insights
 ทุกกราฟต่อไปนี้ใช้ Train เท่านั้น เพื่อไม่ใช้ Test ชี้นำการออกแบบ คำอธิบายและ insight ภาษาไทยสร้างจากค่าจริงหลังรัน
 กราฟใช้ข้อความอังกฤษเพื่อหลีกเลี่ยงปัญหา font ไทยใน Colab; มีชื่อแกนและหน่วยครบ คำอธิบายไทยอยู่ใต้กราฟ
 PNG บันทึก 300 DPI ใน outputs/figures/ แนะนำ heatmap และ time plot สำหรับโปสเตอร์
@@ -175,7 +175,7 @@ for figure_name, caption in eda_captions.items():
     display(Markdown(f"**{figure_name}:** {caption}"))
 ''')
 markdown('''
-## R4 — Modeling & Baseline Comparison / Phase 6
+## R4 — Modeling & Baseline Comparison
 1. Persistence: คาด D(t+1)=D(t), เตือนเมื่อ >= Train P90
 2. Previous Day: คาด D(t+1)=D(t-23), ใช้ P90 เดียวกัน
 3. Logistic Regression: StandardScaler fit เฉพาะ Train, class_weight='balanced'
@@ -194,7 +194,7 @@ selection_snapshot = {"selected_name": selected_name, "peak_threshold_mw": peak_
 (OUTPUT_DIR / "selection_before_test.json").write_text(json.dumps(selection_snapshot, indent=2), encoding="utf-8")
 ''')
 markdown('''
-## R5 — Final Evaluation & Error Analysis / Phase 7
+## R5 — Final Evaluation & Error Analysis
 เปิด Test หลังล็อกการเลือกแล้ว เปรียบเทียบทุกโมเดลบน sample ชุดเดียวกัน ไม่ปรับโมเดล/Features/P90/cutoff จากผลนี้
 
 **PR-AUC convention:** ใช้ Average Precision (AP) แบบ step-weighted จาก sklearn.average_precision_score ไม่ใช่ trapezoidal area
@@ -232,7 +232,7 @@ markdown('''
 Class imbalance: baseline ทาย Normal ทั้งหมดอาจได้ Accuracy สูง แต่ Recall=0 จึงไม่ใช่ความสำเร็จของการเตือน Peak
 ''')
 markdown('''
-## R6 — Recommendations, Limitations & Deployment Considerations / Phase 8
+## R6 — Recommendations, Limitations & Deployment Considerations
 ผู้ใช้เป้าหมายคือผู้วางแผน Demand Management ในสถานการณ์จำลอง เตรียมมาตรการหรือประสานงานก่อนชั่วโมงที่คาดว่า Peak และให้คนตรวจทาน
 
 สิ่งที่ข้อมูลพิสูจน์ได้: metrics/ข้อผิดพลาดบน holdout ช่วงเวลานี้เท่านั้น ไม่ยืนยันประหยัดพลังงาน ลดค่าไฟ ลด CO2 หรือป้องกัน blackout

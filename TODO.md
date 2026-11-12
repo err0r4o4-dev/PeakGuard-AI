@@ -6,7 +6,7 @@ Stack: Python 3.12+, pandas, numpy, matplotlib, seaborn, scikit-learn, joblib. J
 
 ## Tasks and acceptance
 - [x] Inspect workspace and runtime. Public Kaggle metadata/download obtained; license field says CC0: Public Domain.
-- [x] Implement causal data contract and focused checks: 19 tests passed. Initial missing implementation and later timedelta warning reproduced before fixes.
+- [x] Implement causal data contract and focused checks: initial 19 tests passed; current local suite passes 33 tests including portability checks. Initial missing implementation and later timedelta warning reproduced before fixes.
 - [x] Build R1-R7 notebook with three loader modes plus local, train EDA, two baselines, Logistic Regression, Random Forest, frozen selection and errors/metrics. Interactive account-dependent modes remain untested.
 - [x] Execute real data Notebook on local Jupyter CPU: 22 code cells, no cell errors, 14 PNG outputs; not a live Colab run.
 - [x] Verify deliverables: 61 project-only artifact checks, recomputed metrics, reload predictions and 300-DPI metadata.
@@ -20,7 +20,7 @@ Stack: Python 3.12+, pandas, numpy, matplotlib, seaborn, scikit-learn, joblib. J
 - Train-only P90/scaler/model fit. Validation chooses F2, then Recall, then Precision with deterministic ties. Do not refit before test.
 - Final test compares frozen models; it never changes the validation-selected winner. Average Precision is the chosen PR-AUC summary.
 - Success is reproducible evidence and correct evaluation, not guaranteed baseline improvement.
-- Recovery: task-owned new folder only; user-confirmed parent notebook deletion is preserved. No Git repository exists.
+- Recovery: preserve all user work and the user-confirmed parent notebook deletion. A Git repository now exists at the workspace root; do not commit or reset it.
 
 ## Review focus
 Exact one-hour target through gaps; conflicting duplicate hours; future-perturbation invariance; one-class failure; honest poster/AI log.
@@ -28,6 +28,11 @@ Exact one-hour target through gaps; conflicting duplicate hours; future-perturba
 ## Evidence and limitations (2026-11-12)
 No course PDF or existing tracker found. Python 3.12.15 via uv. Dependencies installed in workspace environment; exact versions in validation/environment-freeze.txt.
 Native update_plan is not available; this file is the authoritative tracker. Independent read-only review is authorized; no worker edits or subdelegation.
+
+## Follow-up local validation (2026-11-12)
+- [x] Preserve user-edited R1-R6 headings; align the generator and verify regeneration only in a temporary project. Original notebook bytes unchanged.
+- [x] Exercise upload, Drive and Kaggle loader success/failure paths with local fixtures and mocked external boundaries. No account access, network or credential use.
+- [x] Run all 33 local tests and 61 artifact checks; notebook SHA-256 unchanged. Current evidence: validation/followup_report.json and validation/followup-tests.txt. Live-Colab acceptance remains open.
 
 ## Final acceptance gaps
 - [x] Independent core-flow review passed within supplied scope; full rendered/prose review not claimed.
@@ -43,3 +48,4 @@ Native update_plan is not available; this file is the authoritative tracker. Ind
 - Explicit NumPy time units remove observed Pandas/NumPy timedelta deprecation; regression evidence retained.
 - Main implementation; independent reviewer completed direct-context bounded review after initial tool-access blocker. Graphify external graph construction was not run: no need to transmit project content or add graph artifacts for this notebook.
 - No commits, pushes, deployment, access changes or billable data providers. Overall status PARTIAL until acceptance gaps are resolved.
+- Follow-up: user confirmed removing Phase labels from R1-R6. Generator now matches those headings. R7 can record this actual amendment only after the user supplies its reason and confirms team attribution.

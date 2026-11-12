@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-12",
+  "scope": "local portability tests and generator markdown alignment; no production ML changes",
+  "status": "PASS_LOCAL_ONLY",
+  "unittest": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s PeakGuard-AI/validation -p \"test_*.py\" -v",
+    "tests": 33,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 5.485,
+    "log": "validation/followup-tests.txt"
+  },
+  "artifact_checks": 61,
+  "notebook": {
+    "before_sha256": "3ad47c7a643f03d27d96c6538d97a3d21ab73b59506f89e32087afcc41332925",
+    "after_sha256": "3ad47c7a643f03d27d96c6538d97a3d21ab73b59506f89e32087afcc41332925",
+    "unchanged": true,
+    "run_all_this_followup": false,
+    "reason": "Preserve user-edited notebook and its executed outputs; generator only exercised in a temporary project."
+  },
+  "external": {
+    "network": false,
+    "accounts": false,
+    "credentials": false,
+    "colab_live": "NOT RUN"
+  },
+  "limitations": [
+    "Mocked Colab APIs and Kaggle process validate local branching, not provider compatibility or authentication.",
+    "No teacher PDF supplied.",
+    "User confirmed removing Phase labels; team reason and R7 confirmation still pending."
+  ],
+  "review": "Main reviewed current changes; previous independent core-flow verdict applies to unchanged production source, not this new test file."
+}
